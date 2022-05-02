@@ -10,13 +10,13 @@ CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
 ME_URL = reverse('user:me')
 
+
 def create_user(**params):
     return get_user_model().objects.create_user(**params)
 
 
 class PublicUserApiTests(TestCase):
     """Test the users API (public)"""
-
 
     def setUp(self):
         self.client = APIClient()
@@ -75,8 +75,8 @@ class PublicUserApiTests(TestCase):
     def test_create_token_invalid_credentials(self):
         """Test that token is not created if invalid credentials are given"""
         create_user(
-        email = 'test@abcd.com', 
-        password = 'testpass'
+            email='test@abcd.com',
+            password='testpass'
         )
         payload = {
             'email': 'test@abcd.com',
@@ -116,9 +116,9 @@ class PrivateUserApiTests(TestCase):
 
     def setUp(self):
         self.user = create_user(
-            email = 'test@abcd.com',
-            password = 'testpass',
-            name = 'Name'
+            email='test@abcd.com',
+            password='testpass',
+            name='Name'
         )
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
