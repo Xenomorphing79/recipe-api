@@ -38,3 +38,5 @@ class IngredientViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.C
     def perform_create(self, serializer):
         """Create a new ingredient"""
         serializer.save(user=self.request.user)
+
+    
